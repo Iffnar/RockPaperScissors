@@ -1,36 +1,60 @@
-//get choice-input from player (Rock, paper or scissor)
-let playerChoice = (prompt("Choose your weapon: Rock, Paper or Scissors"))
-console.log("Player chooses "+ playerChoice)
+let computerScore = 0;
+let playerScore = 0;  
 
-//get random number 
-const randomNumber = ((Math.floor((Math.random()*3)+1)));
 
-// convert number to computerChoice
-function assignNumber() {
-    if(randomNumber === 1) {
-        computerChoice = "Rock";
-    } else if (randomNumber === 2) {
-        computerChoice = "Scissors";
-    } else computerChoice = "Paper";
-      return computerChoice
+game();
+
+function game() {
+    console.log(playRound());
+    console.log(playRound());
+    console.log(playRound());
+    console.log(playRound());
+    console.log(playRound());
+    gameTally(computerScore, playerScore);     
 }
-assignNumber();
-console.log("Computer chooses "+ computerChoice)
 
-//determine win/loss or tie: 
-    //rock wins against scissor
-    //scissor wins against paper
-    //paper wins against rock
-    //same choice is a tie
-function determineWinner(playerChoice, computerChoice) {
-    if (playerChoice === "Rock" && computerChoice === "Paper") {
-        console.log("You lose!")
-    } else if (playerChoice === "Rock" && computerChoice === "Scissors") {
-        console.log("You lose!")
-    } else (console.log("It`s a tie...Try again!"));    
-    }   
-determineWinner(playerChoice, computerChoice)
+function gameTally(computerScore, playerScore) {
+    if (computerScore > playerScore) {
+        console.log("You`re defeated. Can you let that stand??"); 
+    } else if(computerScore === playerScore) {
+        console.log("It`s a tie! That`s pathetic, don`t you think?") 
+    } else console.log("Winner winner! Chicken dinner!")
+} 
 
-//if successful -> display victory message 
-//else if display defeat message
-//else display a tie message
+function playRound() {
+    //get playerSelection (Rock, paper or scissor) and announce result
+    let playerSelection = prompt("Choose your weapon: Rock, Paper or Scissors");
+
+    console.log("Player chooses "+ playerSelection);
+
+    //get computer Selection from random number between 1 and 3 and return corresponding choice
+    function getComputerSelection() {
+        let randomNumber = ((Math.floor((Math.random()*3)+1)));
+        if(randomNumber === 1) {
+            return "rock";
+        } else if (randomNumber === 2) {
+            return "scissors";
+        } return "paper";
+    } 
+    const computerSelection = getComputerSelection();
+    console.log("Computer chooses "+ computerSelection)
+
+    //determine win/loss or tie
+    // if playerSelection beats computerSelection alert victory-message, otherwise defeat-message 
+
+    if ((playerSelection.toLowerCase()) === "rock" && computerSelection === "scissors") {
+        playerScore++;
+        return (`You win! Rock beats Scissors --> Player: ${playerScore} Computer: ${computerScore}`)
+    } else if ((playerSelection.toLowerCase()) === "paper" && computerSelection === "rock") {
+        playerScore++;
+        return(`You win! Paper beats Rock --> Player: ${playerScore} Computer: ${computerScore}`)
+    } else if ((playerSelection.toLowerCase()) === "scissors" && computerSelection === "paper") {
+        playerScore++;
+        return (`You win! Scissors beat Paper --> Player: ${playerScore} Computer: ${computerScore}`)
+    } else if ((playerSelection.toLowerCase()) === computerSelection) {
+        return (`It\`s a tie... --> Player: ${playerScore} Computer: ${computerScore}`)        
+    } else {
+        computerScore++;
+        return(`You lose! ${computerSelection} beats ${playerSelection} --> Player: ${playerScore} Computer: ${computerScore}`);
+    } 
+} 
