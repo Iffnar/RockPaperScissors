@@ -5,10 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RockPaperScissors</title>
-    <script src="javascript.js"></script>
+    <script src="javascript.js" defer></script>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Who can reach three points first? </h1>
+        <p>Test your skills in the age-old classic Rock, Paper, Scissors:</p>
+        <div class = weapons>
+            <button class = "rock" >Rock</button>
+            <button class = "paper">Paper</button>
+            <button class = "scissors">Scissors</button>
+    </div>    
+        <div class = "fightLog">FIGHT LOG</div>
+        <div class = "results" >Results</div>
+        <button class = "reset"> Not happy with the result -> Reset</button>
+    </div>
 </body>
+<style>
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    justify-content: center;
+}    
+.weapons {
+    display: block;
+}
+
+
+button {
+    padding: 12px;
+    margin: 12px;
+}
+.rock {
+    background-color: brown;
+}
+
+.paper {
+    background-color: lightgray;
+}
+
+.scissors {
+    background-color: darkgray;
+}
+.fightLog, .results {
+    margin: 12px;
+    padding: 24px 102px;
+    border-style: solid;
+    border-color: blueviolet;
+}
+
+</style>
+
+
+
 
 </html>
